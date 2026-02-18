@@ -1,4 +1,6 @@
-# CF-WORKER-TEXT2KV
+# <img src="screenshot/favicon.svg" width="28" height="28" /> CF-WORKER-TEXT2KV
+
+[English](README.md)
 
 基于 Cloudflare Workers + KV 的在线文本文件管理和分发系统。通过 Web 管理后台管理文本文件，并通过公开 URL 分享 —— 适用于在多设备间同步配置文件、订阅列表或任何文本内容。
 

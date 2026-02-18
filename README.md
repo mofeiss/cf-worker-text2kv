@@ -1,4 +1,6 @@
-# CF-WORKER-TEXT2KV
+# <img src="screenshot/favicon.svg" width="28" height="28" /> CF-WORKER-TEXT2KV
+
+[中文文档](README_CN.md)
 
 A text file management and distribution system built on Cloudflare Workers + KV. Manage text files through a web admin panel and share them via public URLs — ideal for syncing config files, subscription lists, or any text content across devices.
 
