@@ -1,4 +1,4 @@
-# <img src="screenshot/favicon.svg" width="28" height="28" /> CF-WORKER-TEXT2KV
+# <img src="screenshot/favicon.svg" width="28" height="28" /> TEXT-STORE-HUB
 
 [English](README.md)
 
@@ -61,8 +61,8 @@
 ### 2. 克隆并安装
 
 ```bash
-git clone https://github.com/ofeiss/cf-worker-text2kv.git
-cd cf-worker-text2kv
+git clone https://github.com/ofeiss/text-store-hub.git
+cd text-store-hub
 pnpm install
 ```
 

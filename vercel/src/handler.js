@@ -338,7 +338,7 @@ function getLoginHTML() {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VERCEL-TEXT2SQL - 登录</title>
+    <title>TEXT-STORE-HUB - 登录</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath fill='%2377B255' d='M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z'/%3E%3Ccircle fill='%23FFF' cx='18' cy='18' r='3'/%3E%3Cpath fill='%23FFF' d='M20 4c0-1.104-.896-2-2-2s-2 .896-2 2v8c0 1.104.896 2 2 2s2-.896 2-2V4zm0 20c0-1.104-.896-2-2-2s-2 .896-2 2v8c0 1.104.896 2 2 2s2-.896 2-2v-8zM4 16c-1.104 0-2 .896-2 2s.896 2 2 2h8c1.104 0 2-.896 2-2s-.896-2-2-2H4zm20 0c-1.104 0-2 .896-2 2s.896 2 2 2h8c1.104 0 2-.896 2-2s-.896-2-2-2h-8zm-8.829-2.243c.391.391.391 1.024 0 1.414-.39.391-1.024.391-1.414 0L6.272 7.687c-.391-.391-.391-1.024 0-1.415s1.024-.391 1.415 0l7.484 7.485zm14.557 14.556c.392.391.391 1.024 0 1.414-.39.391-1.023.392-1.414 0l-7.485-7.485c-.391-.391-.391-1.023 0-1.414s1.024-.391 1.414 0l7.485 7.485zm-15.971-7.485c.391-.391 1.024-.391 1.414 0 .391.391.391 1.024 0 1.414l-7.485 7.486c-.391.391-1.024.391-1.415 0s-.391-1.024 0-1.415l7.486-7.485zM28.313 6.272c.391-.392 1.024-.391 1.414 0 .391.39.392 1.023 0 1.414l-7.485 7.485c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414l7.485-7.485z'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -409,7 +409,7 @@ function getLoginHTML() {
     <div class="login-card">
       <div class="login-header">
         <div class="login-logo">
-          <span>VERCEL-TEXT2SQL</span>
+          <span>TEXT-STORE-HUB</span>
           <span class="status-dot"></span>
         </div>
         <div class="login-subtitle">输入管理员密码以继续</div>
@@ -467,7 +467,7 @@ function getAdminHTML() {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VERCEL-TEXT2SQL</title>
+    <title>TEXT-STORE-HUB</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'%3E%3Cpath fill='%2377B255' d='M36 32c0 2.209-1.791 4-4 4H4c-2.209 0-4-1.791-4-4V4c0-2.209 1.791-4 4-4h28c2.209 0 4 1.791 4 4v28z'/%3E%3Ccircle fill='%23FFF' cx='18' cy='18' r='3'/%3E%3Cpath fill='%23FFF' d='M20 4c0-1.104-.896-2-2-2s-2 .896-2 2v8c0 1.104.896 2 2 2s2-.896 2-2V4zm0 20c0-1.104-.896-2-2-2s-2 .896-2 2v8c0 1.104.896 2 2 2s2-.896 2-2v-8zM4 16c-1.104 0-2 .896-2 2s.896 2 2 2h8c1.104 0 2-.896 2-2s-.896-2-2-2H4zm20 0c-1.104 0-2 .896-2 2s.896 2 2 2h8c1.104 0 2-.896 2-2s-.896-2-2-2h-8zm-8.829-2.243c.391.391.391 1.024 0 1.414-.39.391-1.024.391-1.414 0L6.272 7.687c-.391-.391-.391-1.024 0-1.415s1.024-.391 1.415 0l7.484 7.485zm14.557 14.556c.392.391.391 1.024 0 1.414-.39.391-1.023.392-1.414 0l-7.485-7.485c-.391-.391-.391-1.023 0-1.414s1.024-.391 1.414 0l7.485 7.485zm-15.971-7.485c.391-.391 1.024-.391 1.414 0 .391.391.391 1.024 0 1.414l-7.485 7.486c-.391.391-1.024.391-1.415 0s-.391-1.024 0-1.415l7.486-7.485zM28.313 6.272c.391-.392 1.024-.391 1.414 0 .391.39.392 1.023 0 1.414l-7.485 7.485c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414l7.485-7.485z'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -918,7 +918,7 @@ function getAdminHTML() {
             <button class="btn-back" id="btnBack" aria-label="返回列表">
               <i data-lucide="arrow-left" style="width:20px;height:20px"></i>
             </button>
-            <span class="app-logo">VERCEL-TEXT2SQL</span>
+            <span class="app-logo">TEXT-STORE-HUB</span>
             <span class="mobile-file-title" id="mobileFileTitle"></span>
             <span class="status-dot" title="服务在线"></span>
           </div>

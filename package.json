@@ -1,5 +1,5 @@
 {
-  "name": "cf-worker-text2kv",
+  "name": "text-store-hub",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
