@@ -2,7 +2,12 @@
 
 [English](README.md)
 
-基于 Cloudflare Workers + KV 的在线文本文件管理和分发系统。通过 Web 管理后台管理文本文件，并通过公开 URL 分享 —— 适用于在多设备间同步配置文件、订阅列表或任何文本内容。
+一个支持双部署目标的文本文件管理与分发系统：
+
+- **Cloudflare Workers + KV**（仓库根目录）
+- **Vercel Edge + Turso**（`vercel/` 子目录）
+
+两者 UI 与 API 行为保持一致，但代码与存储相互独立。
 
 ## 截图
 
@@ -19,7 +24,7 @@
 
 ## 功能特性
 
-- **Web 管理后台** — 文件增删改查，集成 [Ace Editor](https://ace.c9.io/) 代码编辑器（语法高亮、行号、代码折叠）
+- **Web 管理后台** — 文件增删改查，集成 [Ace Editor](https://ace.c9.io/)（语法高亮、行号、代码折叠）
 - **公开文件访问** — 通过 `https://your-domain.com/f/{filename}` 分享文件，始终返回最新内容
 - **响应式设计** — 桌面端双栏布局 + 移动端双视图切换
 - **深色 / 浅色主题** — 持久化到 localStorage
@@ -31,12 +36,21 @@
 
 ## 技术栈
 
+### Cloudflare 版本（根目录）
+
 - **运行时**: Cloudflare Workers
 - **存储**: Cloudflare KV
 - **认证**: 自定义登录页 + SHA-256 Cookie Token
-- **前端**: 单文件内联 HTML/CSS/JS，CDN 依赖（Lucide Icons、Ace Editor、js-yaml、Google Fonts）
 
-## 部署指南
+### Vercel 版本（`vercel/`）
+
+- **运行时**: Vercel Edge Runtime
+- **存储**: Turso（libSQL / SQLite）
+- **认证**: 同样的自定义登录页 + SHA-256 Cookie Token
+
+## 部署方式
+
+## 方案 A：Cloudflare Workers（根目录）
 
 ### 1. 前置条件
 
@@ -60,9 +74,7 @@ npx wrangler kv:namespace create TEXT_STORE_KV
 
 记下返回的命名空间 ID。
 
-### 4. 配置
-
-复制示例配置并填入 KV 命名空间 ID：
+### 4. 配置 Wrangler
 
 ```bash
 cp wrangler.example.toml wrangler.toml
@@ -76,8 +88,6 @@ cp wrangler.example.toml wrangler.toml
 npx wrangler secret put ADMIN_PASSWORD
 ```
 
-按提示输入密码。
-
 ### 6. 部署
 
 ```bash
@@ -86,17 +96,75 @@ npx wrangler deploy
 
 ### 7. 本地开发
 
-创建 `.dev.vars` 文件：
+在仓库根目录创建 `.dev.vars`：
 
-```
+```env
 ADMIN_PASSWORD=你的密码
 ```
 
-启动开发服务器：
+然后启动：
 
 ```bash
 pnpm dev
 ```
+
+## 方案 B：Vercel Edge + Turso（`vercel/`）
+
+### 1. 前置条件
+
+- [Node.js](https://nodejs.org/) >= 18
+- [pnpm](https://pnpm.io/)
+- [Vercel 账号](https://vercel.com/)
+- [Turso 数据库](https://turso.tech/)
+
+### 2. 安装子项目依赖
+
+```bash
+cd vercel
+pnpm install
+```
+
+### 3. 配置环境变量
+
+本地开发可先复制：
+
+```bash
+cp .env.example .env.local
+```
+
+必填变量：
+
+- `ADMIN_PASSWORD`
+- `TURSO_DATABASE_URL`
+- `TURSO_AUTH_TOKEN`
+
+### 4. 本地开发
+
+```bash
+cd vercel
+pnpm dev:vercel
+```
+
+### 5. 部署
+
+在 Vercel 导入该仓库时：
+
+- 将 **Root Directory** 设为 `vercel`
+- 配置上述 3 个环境变量
+- 请绑定**自定义域名**（中国大陆 IP 通常无法稳定访问 Vercel 默认域名）
+
+然后部署：
+
+```bash
+cd vercel
+pnpm deploy:prod
+```
+
+## 数据与迁移
+
+- Cloudflare 与 Vercel 部署是**相互独立**的。
+- 不提供自动双向同步。
+- 需要迁移时，使用应用内置 `导出 / 导入` 功能即可。
 
 ## 路由说明
 

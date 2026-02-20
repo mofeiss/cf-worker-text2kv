@@ -2,7 +2,12 @@
 
 [中文文档](README_CN.md)
 
-A text file management and distribution system built on Cloudflare Workers + KV. Manage text files through a web admin panel and share them via public URLs — ideal for syncing config files, subscription lists, or any text content across devices.
+A text file management and distribution system with two independent deployment targets:
+
+- **Cloudflare Workers + KV** (repo root)
+- **Vercel Edge + Turso** (`vercel/` subdirectory)
+
+Both versions expose the same UI and API behavior, but they are intentionally isolated in code and storage.
 
 ## Screenshots
 
@@ -31,12 +36,21 @@ A text file management and distribution system built on Cloudflare Workers + KV.
 
 ## Tech Stack
 
+### Cloudflare Version (root)
+
 - **Runtime**: Cloudflare Workers
 - **Storage**: Cloudflare KV
 - **Auth**: Custom login page + SHA-256 cookie token
-- **Frontend**: Single-file inline HTML/CSS/JS, CDN dependencies (Lucide Icons, Ace Editor, js-yaml, Google Fonts)
 
-## Deploy
+### Vercel Version (`vercel/`)
+
+- **Runtime**: Vercel Edge Runtime
+- **Storage**: Turso (libSQL / SQLite)
+- **Auth**: Same custom login page + SHA-256 cookie token
+
+## Deploy Options
+
+## Option A: Cloudflare Workers (root)
 
 ### 1. Prerequisites
 
@@ -60,9 +74,7 @@ npx wrangler kv:namespace create TEXT_STORE_KV
 
 Copy the returned namespace ID.
 
-### 4. Configure
-
-Copy the example config and fill in your KV namespace ID:
+### 4. Configure Wrangler
 
 ```bash
 cp wrangler.example.toml wrangler.toml
@@ -76,8 +88,6 @@ Edit `wrangler.toml` and replace `YOUR_KV_NAMESPACE_ID` with the actual ID.
 npx wrangler secret put ADMIN_PASSWORD
 ```
 
-Enter your password when prompted.
-
 ### 6. Deploy
 
 ```bash
@@ -86,17 +96,75 @@ npx wrangler deploy
 
 ### 7. Local Development
 
-Create a `.dev.vars` file:
+Create `.dev.vars` in repo root:
 
-```
+```env
 ADMIN_PASSWORD=your-password
 ```
 
-Start the dev server:
+Then run:
 
 ```bash
 pnpm dev
 ```
+
+## Option B: Vercel Edge + Turso (`vercel/`)
+
+### 1. Prerequisites
+
+- [Node.js](https://nodejs.org/) >= 18
+- [pnpm](https://pnpm.io/)
+- [Vercel account](https://vercel.com/)
+- [Turso database](https://turso.tech/)
+
+### 2. Install Subproject Dependencies
+
+```bash
+cd vercel
+pnpm install
+```
+
+### 3. Configure Environment Variables
+
+Create local env file for development:
+
+```bash
+cp .env.example .env.local
+```
+
+Required vars:
+
+- `ADMIN_PASSWORD`
+- `TURSO_DATABASE_URL`
+- `TURSO_AUTH_TOKEN`
+
+### 4. Local Development
+
+```bash
+cd vercel
+pnpm dev:vercel
+```
+
+### 5. Deploy
+
+When importing this repository in Vercel:
+
+- Set **Root Directory** to `vercel`
+- Configure the three env vars above
+- Bind a **custom domain** (mainland China IPs may not be able to access Vercel default domains reliably)
+
+Then deploy:
+
+```bash
+cd vercel
+pnpm deploy:prod
+```
+
+## Data & Migration
+
+- Cloudflare and Vercel deployments are **independent**.
+- No automatic cross-platform sync is provided.
+- Use built-in `Export` / `Import` APIs for manual migration.
 
 ## URL Routes
 
