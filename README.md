@@ -217,9 +217,8 @@ In the [EdgeOne Pages console](https://console.cloud.tencent.com/edgeone), go to
 
 ```bash
 cd edgeone
-pnpm install
 # Ensure you are logged into the Tencent EdgeOne CLI before running:
-# pnpm dev
+# edgeone pages dev
 ```
 
 ### 4. Deploy to EdgeOne Pages

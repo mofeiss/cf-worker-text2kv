@@ -217,9 +217,8 @@ deno task dev
 
 ```bash
 cd edgeone
-pnpm install
-# 在这之前请确保你在腾讯云 EdgeOne CLI 登录并配置了环境，然后运行：
-# pnpm dev
+# 在这之前请确保你已安装腾讯云 EdgeOne CLI 并完成登录，然后运行：
+# edgeone pages dev
 ```
 
 ### 4. 部署到 EdgeOne Pages
